@@ -99,6 +99,7 @@ function readCommandEntries(
   return Array.isArray(raw) ? raw.filter((entry): entry is Record<string, unknown> => isRecord(entry)) : [];
 }
 
+/** Lists every workspace command definition keyed by its normalized command key. */
 export function listWorkspaceCommandDefinitions(
   workspaceRuntime: Record<string, unknown> | null | undefined,
 ): WorkspaceCommandDefinition[] {
@@ -147,12 +148,14 @@ export function listWorkspaceCommandDefinitions(
   return [...serviceDefinitions, ...jobDefinitions];
 }
 
+/** Lists command definitions contributed by a specific runtime service. */
 export function listWorkspaceServiceCommandDefinitions(
   workspaceRuntime: Record<string, unknown> | null | undefined,
 ) {
   return listWorkspaceCommandDefinitions(workspaceRuntime).filter((command) => command.kind === "service");
 }
 
+/** Finds the best-matching command definition for a raw input, or returns null. */
 export function findWorkspaceCommandDefinition(
   workspaceRuntime: Record<string, unknown> | null | undefined,
   workspaceCommandId: string | null | undefined,
@@ -162,6 +165,7 @@ export function findWorkspaceCommandDefinition(
   return listWorkspaceCommandDefinitions(workspaceRuntime).find((command) => command.id === normalizedId) ?? null;
 }
 
+/** Scores how well a runtime service matches a given command definition (higher = better). */
 export function scoreWorkspaceRuntimeServiceMatch(
   command: Pick<WorkspaceCommandDefinition, "serviceIndex" | "name" | "command" | "cwd">,
   runtimeService: Pick<WorkspaceRuntimeService, "configIndex" | "serviceName" | "command" | "cwd">,
@@ -187,6 +191,7 @@ export function scoreWorkspaceRuntimeServiceMatch(
   return score;
 }
 
+/** Pairs each command definition with its best-scoring runtime service. */
 export function matchWorkspaceRuntimeServiceToCommand<
   T extends Pick<WorkspaceRuntimeService, "configIndex" | "serviceName" | "command" | "cwd">,
 >(

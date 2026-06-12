@@ -1,5 +1,7 @@
+/** Matches canonical issue identifiers like `PRJ-42`. */
 export const ISSUE_REFERENCE_IDENTIFIER_RE = /^[A-Z][A-Z0-9]*-\d+$/;
 
+/** A match found when scanning text for issue references. */
 export interface IssueReferenceMatch {
   index: number;
   length: number;
@@ -89,16 +91,19 @@ function trimTrailingPunctuation(token: string): string {
   return trimmed;
 }
 
+/** Normalizes a raw issue identifier string to its canonical form (e.g. lowercase `prj-42` → `PRJ-42`), or returns null if invalid. */
 export function normalizeIssueIdentifier(value: string): string | null {
   const trimmed = value.trim().toUpperCase();
   return ISSUE_REFERENCE_IDENTIFIER_RE.test(trimmed) ? trimmed : null;
 }
 
+/** Builds a relative href path for an issue identifier (e.g. `/issues/PRJ-42`). */
 export function buildIssueReferenceHref(identifier: string): string {
   const normalized = normalizeIssueIdentifier(identifier);
   return `/issues/${normalized ?? identifier.trim()}`;
 }
 
+/** Parses an issue-reference href path (e.g. `/issues/PRJ-42`) back into its identifier, or returns null. */
 export function parseIssueReferenceHref(href: string): { identifier: string } | null {
   const raw = trimTrailingPunctuation(href.trim());
   if (!raw) return null;
@@ -128,6 +133,7 @@ export function parseIssueReferenceHref(href: string): { identifier: string } | 
   return null;
 }
 
+/** Scans markdown text for issue-reference tokens and returns every match with position metadata. */
 export function findIssueReferenceMatches(text: string): IssueReferenceMatch[] {
   if (!text) return [];
 
@@ -159,6 +165,7 @@ export function findIssueReferenceMatches(text: string): IssueReferenceMatch[] {
   return matches;
 }
 
+/** Extracts every unique issue identifier found in markdown text, deduplicated. */
 export function extractIssueReferenceIdentifiers(markdown: string): string[] {
   const scrubbed = stripMarkdownCode(markdown);
   const seen = new Set<string>();
@@ -173,6 +180,7 @@ export function extractIssueReferenceIdentifiers(markdown: string): string[] {
   return ordered;
 }
 
+/** Extracts every issue-reference match from markdown, preserving position and ordering. */
 export function extractIssueReferenceMatches(markdown: string): IssueReferenceMatch[] {
   const scrubbed = stripMarkdownCode(markdown);
   const seen = new Set<string>();
