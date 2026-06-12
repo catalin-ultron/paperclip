@@ -100,7 +100,7 @@ export function buildIssueReferenceHref(identifier: string): string {
 }
 
 export function parseIssueReferenceHref(href: string): { identifier: string } | null {
-  const raw = href.trim();
+  const raw = trimTrailingPunctuation(href.trim());
   if (!raw) return null;
 
   let url: URL;

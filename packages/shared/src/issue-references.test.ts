@@ -14,6 +14,15 @@ describe("issue references", () => {
     expect(normalizeIssueIdentifier("not-an-issue")).toBeNull();
   });
 
+  it("strips trailing punctuation from hrefs", () => {
+    // parseIssueReferenceHref is public API — callers may pass markdown-punctuated hrefs.
+    expect(parseIssueReferenceHref("/issues/PAP-123]")).toEqual({ identifier: "PAP-123" });
+    expect(parseIssueReferenceHref("/issues/PAP-123)")).toEqual({ identifier: "PAP-123" });
+    expect(parseIssueReferenceHref("https://paperclip.ing/PAP/issues/pap-456]")).toEqual({
+      identifier: "PAP-456",
+    });
+  });
+
   it("parses relative and absolute issue hrefs", () => {
     expect(parseIssueReferenceHref("/issues/PAP-123")).toEqual({ identifier: "PAP-123" });
     expect(parseIssueReferenceHref("/PAP/issues/pap-456")).toEqual({ identifier: "PAP-456" });
