@@ -73,8 +73,8 @@ describe("deriveAgentUrlKey", () => {
   });
 
   it("appends shortId for non-ASCII names", () => {
-    expect(deriveAgentUrlKey("Müller", agentId)).toBe("m-ller-aaaaaaaab");
-    expect(deriveAgentUrlKey("支持", agentId)).toBe("aaaaaaaab");
+    expect(deriveAgentUrlKey("Müller", agentId)).toBe("m-ller-aaaaaaaa");
+    expect(deriveAgentUrlKey("支持", agentId)).toBe("aaaaaaaa");
   });
 
   it("falls back to fallback when name is null/empty", () => {
