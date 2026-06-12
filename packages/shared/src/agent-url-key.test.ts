@@ -4,7 +4,7 @@ import {
   normalizeAgentUrlKey,
   hasNonAsciiContent,
   deriveAgentUrlKey,
-} from "../agent-url-key.js";
+} from "./agent-url-key";
 
 describe("isUuidLike", () => {
   it("returns true for a valid lowercase UUID", () => {
