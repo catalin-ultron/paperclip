@@ -37,7 +37,7 @@ describe("normalizeAgentUrlKey", () => {
   });
   it("strips non-ASCII (umlauts, accents, CJK)", () => {
     expect(normalizeAgentUrlKey("Müller")).toBe("m-ller");
-    expect(normalizeAgentUrlKey("支持")).toBe("");
+    expect(normalizeAgentUrlKey("支持")).toBe(null);
   });
   it("returns null for empty result after normalization", () => {
     expect(normalizeAgentUrlKey("")).toBe(null);

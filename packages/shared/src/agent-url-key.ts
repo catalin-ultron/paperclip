@@ -27,7 +27,9 @@ export function hasNonAsciiContent(value: string | null | undefined): boolean {
 /** Extract the first 8 hex chars from a valid UUID, or null. */
 function shortIdFromUuid(value: string | null | undefined): string | null {
   if (typeof value !== "string" || !UUID_RE.test(value.trim())) return null;
-  return value.trim().replace(/-/g, "").slice(0, 8).toLowerCase();
+  // First block of a UUID is 8 hex chars — take it directly rather than
+  // stripping dashes and slicing, which bleeds into the second block.
+  return value.trim().split("-")[0].slice(0, 8).toLowerCase();
 }
 
 export function deriveAgentUrlKey(name: string | null | undefined, fallback?: string | null): string {
