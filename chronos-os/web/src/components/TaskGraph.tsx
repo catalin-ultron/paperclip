@@ -79,7 +79,7 @@ export default function TaskGraph({ tasks, deps }: { tasks: Task[]; deps: TaskDe
       if (!connection.source || !connection.target) return;
       // Create dependency via API
       try {
-        const res = await fetch(`/api/tasks/${connection.target}/dependencies`, {
+        const res = await fetch(`/api/tasks/dependencies?taskId=${connection.target}`, {
           method: "POST",
           headers: { "Content-Type": "application/json", "x-user-id": "demo" },
           body: JSON.stringify({ prerequisiteTaskId: connection.source }),
