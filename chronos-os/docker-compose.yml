@@ -1,0 +1,104 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: chronos-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: chronos
+      POSTGRES_PASSWORD: chronos_secret
+      POSTGRES_DB: chronos_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chronos -d chronos_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: chronos-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  fastapi:
+    build:
+      context: ./python-service
+      dockerfile: Dockerfile
+    container_name: chronos-fastapi
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://chronos:chronos_secret@postgres:5432/chronos_db
+      - REDIS_URL=redis://redis:6379/0
+      - PYTHONUNBUFFERED=1
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./python-service:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  nextjs:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: chronos-nextjs
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgresql://chronos:chronos_secret@postgres:5432/chronos_db
+      - REDIS_URL=redis://redis:6379/0
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - FASTAPI_URL=http://fastapi:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      fastapi:
+        condition: service_started
+    volumes:
+      - ./web:/app
+      - /app/node_modules
+    command: npm run dev
+
+  websocket:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: chronos-websocket
+    restart: unless-stopped
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - WS_PORT=3001
+    ports:
+      - "3001:3001"
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./web:/app
+      - /app/node_modules
+    command: npx tsx src/lib/lockin-server.ts
+
+volumes:
+  postgres_data:
+  redis_data:
