@@ -1,0 +1,51 @@
+name: ChronosOS CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Start services
+        run: docker compose up -d postgres redis python-service
+
+      - name: Wait for services
+        run: sleep 15
+
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Run Drizzle migrations
+        working-directory: ./frontend
+        env:
+          DATABASE_URL: postgresql://chronos:chronos_secret@localhost:5432/chronosos
+        run: npx drizzle-kit migrate
+
+      - name: Run frontend tests with coverage
+        working-directory: ./frontend
+        run: npx jest --coverage --coverageReporters=text-summary --coverageThreshold='{"global":{"branches":85,"functions":85,"lines":85,"statements":85}}'
+
+      - name: Install Python dependencies
+        working-directory: ./python-service
+        run: pip install -r requirements.txt pytest pytest-cov
+
+      - name: Run Python tests with coverage
+        working-directory: ./python-service
+        run: pytest --cov=main --cov-report=term-missing --cov-fail-under=85

@@ -1,26 +1,18 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.react-flow__node {
+  @apply rounded-lg border border-gray-300 bg-white shadow-sm px-4 py-2 text-sm font-medium;
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.react-flow__node.todo {
+  @apply bg-gray-100 border-gray-400;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.react-flow__node.in_progress {
+  @apply bg-blue-100 border-blue-400;
 }
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.react-flow__node.complete {
+  @apply bg-green-100 border-green-400;
+}
+.react-flow__edge-path {
+  stroke: #6b7280;
+  stroke-width: 2;
 }
