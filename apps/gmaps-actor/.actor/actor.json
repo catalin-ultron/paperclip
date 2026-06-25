@@ -1,0 +1,13 @@
+{
+  "actorSpecification": 1,
+  "name": "ultron-test-gmaps2",
+  "title": "Ultron Test Google Maps Scraper 2",
+  "description": "Scrape Google Maps business results for a query and location.",
+  "version": "0.0",
+  "buildTag": "latest",
+  "meta": {
+    "templateId": "js-crawlee-puppeteer-chrome"
+  },
+  "input": "./input_schema.json",
+  "dockerfile": "./Dockerfile"
+}
