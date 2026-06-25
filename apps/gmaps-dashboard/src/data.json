@@ -1,1 +1,102 @@
-[]
+[
+  {
+    "placeUrl": "https://www.google.com/maps/place/Terrible+Love/data=!4m7!3m6!1s0x8644b5909076ca3f:0x29646d76a1c6aada!8m2!3d30.3045132!4d-97.735632!16s%2Fg%2F11ng70tdrd!19sChIJP8p2kJC1RIYR2qrGoXZtZCk?authuser=0&hl=en&rclk=1",
+    "name": "Terrible Love",
+    "address": "4.9",
+    "rating": 4.9,
+    "reviewsCount": null,
+    "phone": "",
+    "website": "",
+    "category": ""
+  },
+  {
+    "placeUrl": "https://www.google.com/maps/place/Jo%27s+Coffee+%E2%80%93+South+Congress/data=!4m7!3m6!1s0x8644b4fda2c12fd5:0x66b58cb4722b37b!8m2!3d30.2510458!4d-97.7493717!16s%2Fm%2F020z01l!19sChIJ1S_Bov20RIYRe7MiR8tYawY?authuser=0&hl=en&rclk=1",
+    "name": "Jo's Coffee – South Congress",
+    "address": "4.4",
+    "rating": 4.4,
+    "reviewsCount": null,
+    "phone": "",
+    "website": "",
+    "category": "Coffee & snacks in a vibrant space"
+  },
+  {
+    "placeUrl": "https://www.google.com/maps/place/Epoch+Coffee/data=!4m7!3m6!1s0x8644ca6bc309e81b:0x1f1a903bbb66839!8m2!3d30.3186037!4d-97.7245402!16s%2Fg%2F1v76_180!19sChIJG-gJw2vKRIYROWi2uwOp8QE?authuser=0&hl=en&rclk=1",
+    "name": "Epoch Coffee",
+    "address": "4.5",
+    "rating": 4.5,
+    "reviewsCount": null,
+    "phone": "",
+    "website": "",
+    "category": "Hip coffee shop with light bites"
+  },
+  {
+    "placeUrl": "https://www.google.com/maps/place/Flora+Coffee+%26+Culture/data=!4m7!3m6!1s0x8644eb01e1b6f12b:0xfd2a1ae49e89ca16!8m2!3d30.362347!4d-97.7421123!16s%2Fg%2F11vrh3fl3l!19sChIJK_G24QHrRIYRFsqJnuQaKv0?authuser=0&hl=en&rclk=1",
+    "name": "Flora Coffee & Culture",
+    "address": "4.9",
+    "rating": 4.9,
+    "reviewsCount": null,
+    "phone": "",
+    "website": "",
+    "category": ""
+  },
+  {
+    "placeUrl": "https://www.google.com/maps/place/Klerje+Coffee/data=!4m7!3m6!1s0x8644b5621bdae7dd:0xe6d9eb562b242358!8m2!3d30.262758!4d-97.7254312!16s%2Fg%2F11yc0s_r1s!19sChIJ3efaG2K1RIYRWCMkK1br2eY?authuser=0&hl=en&rclk=1",
+    "name": "Klerje Coffee",
+    "address": "4.8",
+    "rating": 4.8,
+    "reviewsCount": null,
+    "phone": "",
+    "website": "",
+    "category": ""
+  },
+  {
+    "placeUrl": "https://www.google.com/maps/place/Caf%C3%A9+Cr%C3%A8me+-+Downtown/data=!4m7!3m6!1s0x8644b5c58dec06d1:0xc09764ef28121427!8m2!3d30.2661527!4d-97.7513939!16s%2Fg%2F11m6xjvf2c!19sChIJ0QbsjcW1RIYRJxQSKO9kl8A?authuser=0&hl=en&rclk=1",
+    "name": "Café Crème - Downtown",
+    "address": "4.8",
+    "rating": 4.8,
+    "reviewsCount": null,
+    "phone": "",
+    "website": "",
+    "category": ""
+  },
+  {
+    "placeUrl": "https://www.google.com/maps/place/Trippy+Buck+Coffee/data=!4m7!3m6!1s0x8644b542fa253e6f:0x811a8ae533a5012!8m2!3d30.269417!4d-97.7410702!16s%2Fg%2F11yr7q6kv6!19sChIJbz4l-kK1RIYRElA6U66oEQg?authuser=0&hl=en&rclk=1",
+    "name": "Trippy Buck Coffee",
+    "address": "4.9",
+    "rating": 4.9,
+    "reviewsCount": null,
+    "phone": "",
+    "website": "",
+    "category": ""
+  },
+  {
+    "placeUrl": "https://www.google.com/maps/place/Merfolk%E2%80%99s+Specialty+Coffee/data=!4m7!3m6!1s0x8644b5b25dc39095:0x16aa26aad0e0315c!8m2!3d30.212558!4d-97.7710395!16s%2Fg%2F11wcbr1mgt!19sChIJlZDDXbK1RIYRXDHg0KomqhY?authuser=0&hl=en&rclk=1",
+    "name": "Merfolk’s Specialty Coffee",
+    "address": "4.7",
+    "rating": 4.7,
+    "reviewsCount": null,
+    "phone": "",
+    "website": "",
+    "category": ""
+  },
+  {
+    "placeUrl": "https://www.google.com/maps/place/Black+Cat+Coffee/data=!4m7!3m6!1s0x8644b515515fd62f:0xf89c0e8a8f156dd7!8m2!3d30.2444179!4d-97.7580971!16s%2Fg%2F11z04_zrct!19sChIJL9ZfURW1RIYR120Vj4oOnPg?authuser=0&hl=en&rclk=1",
+    "name": "Black Cat Coffee",
+    "address": "Coffee shop · 603 W Live Oak St",
+    "rating": 5,
+    "reviewsCount": 88,
+    "phone": "",
+    "website": "",
+    "category": "\"The coffee was delicious and the gentleman who made it was so sweet!\""
+  },
+  {
+    "placeUrl": "https://www.google.com/maps/place/Spokesman+Coffee/data=!4m7!3m6!1s0x8644b4986946608b:0x8398e3fb458d7c22!8m2!3d30.2155763!4d-97.7624548!16s%2Fg%2F11c0w0sq6t!19sChIJi2BGaZi0RIYRInyNRfvjmIM?authuser=0&hl=en&rclk=1",
+    "name": "Spokesman Coffee",
+    "address": "Coffee shop ·  · 440 E St Elmo Rd A2",
+    "rating": 4.7,
+    "reviewsCount": 1095,
+    "phone": "",
+    "website": "",
+    "category": "Funky stop for craft coffee & draft beer"
+  }
+]
